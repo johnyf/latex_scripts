@@ -1,0 +1,6 @@
+templates/*
+tex/*
+.DS_Store
+*.scpt
+*.app/
+
