@@ -28,7 +28,8 @@ def dump_dir_tree(path, texfile):
     logger.info('Generating \graphicspath for graphicx...')
     logger.debug('I am at: ' + os.getcwd() )
     
-    s = '\graphicspath{%\n'
+    s = ('\graphicspath{%\n'
+         '{' + path + '}%\n')
     for root, dirs, files in os.walk(path, followlinks=True):
         logger.debug(root)
         logger.debug(dirs)
