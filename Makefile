@@ -168,8 +168,9 @@ texlive_temp_mac_sync:
 	#echo "fixing lack of auxdir"
 	#which tex_hide_aux.sh
 	#pwd	
-	# fix lack of auxdir
-	-tex_hide_aux.sh
+	
+	@printf "\n\n"
+	-@tex_hide_aux.sh > /dev/null
 
 # pytex: all of it
 pytex:
