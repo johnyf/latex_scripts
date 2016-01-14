@@ -164,10 +164,7 @@ texlive_temp_mac:
 
 texlive_temp_mac_sync:
 	echo "TeXLive on Mac: single compile and SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
-	#echo "fixing lack of auxdir"
-	#which tex_hide_aux.sh
-	#pwd	
+	time xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 	
 	@printf "\n\n"
 	-@tex_hide_aux.sh > /dev/null
