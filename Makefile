@@ -141,18 +141,11 @@ miktex_temp_sync:
 # TeXLive on Linux
 texlive_temp:
 	echo "TeXLive on Linux: single compile, no SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape --output-directory=$(aux_dir) $(main_file).tex
+	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
 	
-	# fix lack of auxdir
-	cp $(aux_dir)/$(main_file).pdf ./$(main_file).pdf
-
 texlive_temp_sync:
 	echo "TeXLive on Linux: single compile and SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape --output-directory=$(aux_dir) --synctex=1 $(main_file).tex
-	
-	# fix lack of auxdir
-	cp $(aux_dir)/$(main_file).pdf ./$(main_file).pdf
-	cp $(aux_dir)/$(main_file).synctex.gz ./$(main_file).synctex.gz
+	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 
 # TeXLive on Mac
 texlive_temp_mac:
