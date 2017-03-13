@@ -56,20 +56,20 @@ endif
 full_miktex:
 	echo "MikTeX (full)"
 	make miktex_temp
-	
+
 	@for i in ./$(aux_dir)/$(main_file)[1-9]*.aux;\
   	do \
   		echo "Bilbliography of $$i";\
 		bibtex $$i;\
   	done
-	
+
 	make miktex_temp
 	make miktex_temp
 
 full_texlive:
 	echo "TeXLive on Linux (full)"
 	make texlive_temp
-	
+
 	@for i in ./$(aux_dir)/$(main_file)[1-9]*.aux;\
   	do \
   		echo "Bilbliography of $$i";\
@@ -83,7 +83,7 @@ full_texlive:
 full_texlive_mac:
 	echo "TeXLive on Mac (full)"
 	make texlive_temp_mac
-	
+
 	@for i in ./$(main_file)[1-9]*.aux;\
   	do \
   		echo "Bilbliography of $$i";\
@@ -96,7 +96,7 @@ full_texlive_mac:
 # single compile with synctex
 sync:
 	echo "Temporary (single compile): with SyncTeX"
-	
+
 ifeq ($(UNAME), CYGWIN_NT-5.1)
 	make miktex_temp_sync
 	make copylog
@@ -113,16 +113,16 @@ endif
 # single compile w/o synctex
 temp:
 	echo "Temporary (single compile): w/o SyncTeX"
-	
+
 ifeq ($(UNAME), CYGWIN_NT-5.1)
 	make miktex_temp
 	make copylog
 endif
-	
+
 ifeq ($(UNAME), Linux)
 	make texlive_temp
 endif
-	
+
 ifeq ($(UNAME), Darwin)
 	make texlive_temp_mac
 endif
@@ -142,7 +142,7 @@ miktex_temp_sync:
 texlive_temp:
 	echo "TeXLive on Linux: single compile, no SyncTeX"
 	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
-	
+
 texlive_temp_sync:
 	echo "TeXLive on Linux: single compile and SyncTeX"
 	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
@@ -151,14 +151,14 @@ texlive_temp_sync:
 texlive_temp_mac:
 	echo "TeXLive on Mac: single compile, no SyncTeX"
 	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
-	
+
 	# fix lack of auxdir
 	-tex_hide_aux.sh
 
 texlive_temp_mac_sync:
 	echo "TeXLive on Mac: single compile and SyncTeX"
 	time xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
-	
+
 	@printf "\n\n"
 	-@tex_hide_aux.sh > /dev/null
 
