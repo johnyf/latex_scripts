@@ -194,7 +194,6 @@ junctions:
 	junctions.py -c
 
 clean:
-	rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
-	rm -f -r ./auxdir/*
-	rm -f ./tex/*.aux
-	
+	-rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
+	-rm -f -r ./auxdir/*
+	-rm -f ./tex/*.aux
