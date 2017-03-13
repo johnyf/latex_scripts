@@ -30,8 +30,8 @@ There are 3 options, organized as follows:
 3. `temp` (compile)
 	-	- miktex_temp (1)
 		- copylog
-	
-	- texlive_tmp (2)		
+
+	- texlive_tmp (2)
 	- texlive_temp_mac (3)
 
 The individual calls are:

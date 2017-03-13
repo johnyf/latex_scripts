@@ -10,7 +10,7 @@ do
 	echo ${i}
 	if [ -f "${i}" ];
 	then
-		chflags -f hidden $i; 
+		chflags -f hidden $i;
 	else
 		echo "Files of this type do not exist.";
 	fi
