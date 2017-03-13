@@ -197,3 +197,5 @@ clean:
 	-rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
 	-rm -f -r ./auxdir/*
 	-rm -f ./tex/*.aux
+	# some PDF files may be sources, so not `*.pdf`
+	-rm -f ./img/*.pdf_tex
