@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# hide latex auxilirary files' mess (uses chflags)
+# hide latex auxiliary files' mess (uses chflags)
 #
 # 2013.02.01 (c) Ioannis Filippidis, jfilippidis@gmail.com
 
