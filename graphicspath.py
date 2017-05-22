@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 description = """
 list all directories under given directory
 to create the graphicspath for latex package graphicx
