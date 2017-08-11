@@ -81,28 +81,19 @@ full_texlive_mac:
 	# fix lack of auxdir
 	-tex_hide_aux.sh
 
-# single compile with synctex
 sync:
-	echo "Temporary (single compile): with SyncTeX"
+	echo "Compile once using SyncTeX"
 
 ifeq ($(UNAME), Linux)
-	make texlive_temp_sync
+	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 endif
 
 ifeq ($(UNAME), Darwin)
-	make texlive_temp_mac_sync
-endif
-
-texlive_temp_sync:
-	echo "TeXLive on Linux: single compile and SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
-
-texlive_temp_mac_sync:
-	echo "TeXLive on Mac: single compile and SyncTeX"
 	time xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
-
 	@printf "\n\n"
 	-@tex_hide_aux.sh > /dev/null
+endif
+
 
 # pytex: all of it
 pytex:
