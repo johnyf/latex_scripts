@@ -3,9 +3,10 @@ description = """
 list all directories under given directory
 to create the graphicspath for latex package graphicx
 use in latex preamble by: \input{./graphicspath}
-
-2013 - 2014 (BSD) Ioannis Filippidis
 """
+# Copyright 2013-2017 by Ioannis Filippidis
+# All rights reserved. Licensed under BSD.
+#
 import logging
 logger = logging.getLogger(__name__)
 

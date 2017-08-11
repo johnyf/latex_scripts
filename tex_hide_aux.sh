@@ -2,7 +2,8 @@
 
 # hide latex auxiliary files' mess (uses chflags)
 #
-# 2013.02.01 (c) Ioannis Filippidis, jfilippidis@gmail.com
+# Copyright 2013 by Ioannis Filippidis
+# All rights reserved. Licensed under BSD.
 
 echo "Hiding aux files...";
 for i in *.{out,log,aux,toc,bbl,blg,synctex.gz,nav,snm,vrb};
