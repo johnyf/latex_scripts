@@ -54,7 +54,7 @@ endif
 
 full_texlive:
 	echo "TeXLive on Linux (full)"
-	make texlive_temp
+	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
 
 	@for i in ./$(aux_dir)/$(main_file)[1-9]*.aux;\
   	do \
@@ -62,13 +62,13 @@ full_texlive:
 		bibtex $$i;\
   	done
 
-	make texlive_temp
-	make texlive_temp
+	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
+	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 	cp $(aux_dir)/$(main_file).pdf ./$(main_file).pdf
 
 full_texlive_mac:
 	echo "TeXLive on Mac (full)"
-	make texlive_temp_mac
+	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
 
 	@for i in ./$(main_file)[1-9]*.aux;\
   	do \
@@ -76,8 +76,10 @@ full_texlive_mac:
 		bibtex $$i;\
   	done
 
-	make texlive_temp_mac
-	make texlive_temp_mac
+	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
+	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
+	# fix lack of auxdir
+	-tex_hide_aux.sh
 
 # single compile with synctex
 sync:
@@ -91,36 +93,9 @@ ifeq ($(UNAME), Darwin)
 	make texlive_temp_mac_sync
 endif
 
-# single compile w/o synctex
-temp:
-	echo "Temporary (single compile): w/o SyncTeX"
-
-ifeq ($(UNAME), Linux)
-	make texlive_temp
-endif
-
-ifeq ($(UNAME), Darwin)
-	make texlive_temp_mac
-endif
-
-# The various single compiles (w, w/o sync) for different OS (edit mainly here)
-
-# TeXLive on Linux
-texlive_temp:
-	echo "TeXLive on Linux: single compile, no SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
-
 texlive_temp_sync:
 	echo "TeXLive on Linux: single compile and SyncTeX"
 	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
-
-# TeXLive on Mac
-texlive_temp_mac:
-	echo "TeXLive on Mac: single compile, no SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape $(main_file).tex
-
-	# fix lack of auxdir
-	-tex_hide_aux.sh
 
 texlive_temp_mac_sync:
 	echo "TeXLive on Mac: single compile and SyncTeX"
