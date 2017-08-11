@@ -109,7 +109,7 @@ pythontex:
 copylog:
 	cp $(aux_dir)/$(main_file).log ./$(main_file).log
 
-paperbib:
+bib:
 
 ifeq ($(UNAME), Linux)
 	bibtex ./$(main_file).aux
