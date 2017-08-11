@@ -1,27 +1,12 @@
-# XeTeX makefile by Ioannis Filippidis (BSD) 2010 - 2013
+# Typesetting documents
 #
-# help
-#	There are 3 options in this file:
-#		1) full (3 compiles, 1 bib, no sync)
-#		2) sync (1 compile, sync)
-#		3) temp (1 compile, no sync)
+# There are 3 main recipes in this file:
 #
-#	Editing makes sense mostly towards the end, where
-#	the single-compile commands are
-#	(these are called by everything else)
+#   1. full (3 compiles, 1 bib, last build with SyncTeX)
+#   2. sync (1 compile, SyncTeX)
 #
-# usage
-#	make full, or
-#	make sync, or
-#	make temp
-#
-# tip
-#	in TeXstudio configure:
-#		F1 = make sync
-#		F2 = make paperbib
-#		F5 = make full
-#		F12 = make junctions
-
+# Copyright 2010-2017 by Ioannis Filippidis
+# All rights reserved. Licensed under BSD.
 
 #comma:=
 #empty:=
