@@ -42,10 +42,6 @@ UNAME := $(shell uname)
 
 # 3 compiles, 1 bib-compile
 full:
-ifeq ($(UNAME), CYGWIN_NT-5.1)
-	make full_miktex
-	copylog
-endif
 
 ifeq ($(UNAME), Linux)
 	make full_texlive
@@ -55,19 +51,6 @@ endif
 ifeq ($(UNAME), Darwin)
 	make full_texlive_mac
 endif
-
-full_miktex:
-	echo "MikTeX (full)"
-	make miktex_temp
-
-	@for i in ./$(aux_dir)/$(main_file)[1-9]*.aux;\
-  	do \
-  		echo "Bilbliography of $$i";\
-		bibtex $$i;\
-  	done
-
-	make miktex_temp
-	make miktex_temp
 
 full_texlive:
 	echo "TeXLive on Linux (full)"
@@ -100,11 +83,6 @@ full_texlive_mac:
 sync:
 	echo "Temporary (single compile): with SyncTeX"
 
-ifeq ($(UNAME), CYGWIN_NT-5.1)
-	make miktex_temp_sync
-	make copylog
-endif
-
 ifeq ($(UNAME), Linux)
 	make texlive_temp_sync
 endif
@@ -117,11 +95,6 @@ endif
 temp:
 	echo "Temporary (single compile): w/o SyncTeX"
 
-ifeq ($(UNAME), CYGWIN_NT-5.1)
-	make miktex_temp
-	make copylog
-endif
-
 ifeq ($(UNAME), Linux)
 	make texlive_temp
 endif
@@ -131,15 +104,6 @@ ifeq ($(UNAME), Darwin)
 endif
 
 # The various single compiles (w, w/o sync) for different OS (edit mainly here)
-
-# MikTeX on Windows
-miktex_temp:
-	echo "MikTeX: single compile, no SyncTeX"
-	xelatex --interaction=nonstopmode -shell-escape --output-directory=$(aux_dir) $(main_file).tex
-
-miktex_temp_sync:
-	echo "MikTeX: single compile and SyncTeX"
-	xelatex --interaction=nonstopmode --shell-escape --aux-directory=$(aux_dir) --synctex=1 $(main_file).tex
 
 # TeXLive on Linux
 texlive_temp:
@@ -180,9 +144,6 @@ copylog:
 	cp $(aux_dir)/$(main_file).log ./$(main_file).log
 
 paperbib:
-ifeq ($(UNAME), CYGWIN_NT-5.1)
-	bibtex ./$(aux_dir)/$(main_file).aux
-endif
 
 ifeq ($(UNAME), Linux)
 	bibtex ./$(main_file).aux
@@ -191,10 +152,6 @@ endif
 ifeq ($(UNAME), Darwin)
 	bibtex ./$(main_file).aux
 endif
-
-# create symbolic links to (shared) img directories
-junctions:
-	junctions.py -c
 
 clean:
 	-rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
