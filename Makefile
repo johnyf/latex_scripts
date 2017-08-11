@@ -97,9 +97,12 @@ copylog:
 bib:
 	bibtex ./$(main_file).aux
 
+biblatex:
+	biber $(main_file)
+
 
 clean:
-	-rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
+	-rm -f *.aux *.blg *.log *.bcf *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
 	-rm -f -r ./auxdir/*
 	-rm -f ./tex/*.aux
 	# some PDF files may be sources, so not `*.pdf`
