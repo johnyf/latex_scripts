@@ -22,8 +22,6 @@
 #		F5 = make full
 #		F12 = make junctions
 
-# todo
-#	add some kind of warning if no _main file is detected
 
 #comma:=
 #empty:=
@@ -32,6 +30,11 @@
 
 main_file := $(wildcard *_main.tex)
 main_file := $(subst .tex,,$(main_file))
+ifeq ("$(main_file)","")
+$(warning !!!!!!!!)
+$(warning No LaTeX file that ends with "_main.tex")
+$(warning !!!!!!!!)
+endif
 
 aux_dir := ./auxdir
 
