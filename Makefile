@@ -95,14 +95,8 @@ copylog:
 	cp $(aux_dir)/$(main_file).log ./$(main_file).log
 
 bib:
-
-ifeq ($(UNAME), Linux)
 	bibtex ./$(main_file).aux
-endif
 
-ifeq ($(UNAME), Darwin)
-	bibtex ./$(main_file).aux
-endif
 
 clean:
 	-rm -f *.aux *.blg *.log *.bbl *.lof *.tdo *.lot *.out *.toc *.synctex.gz
