@@ -107,3 +107,6 @@ clean:
 	-rm -f ./tex/*.aux
 	# some PDF files may be sources, so not `*.pdf`
 	-rm -f ./img/*.pdf_tex
+
+clean_cache:
+	-rm -f .tla2tex/*.tla .tla2tex/*.tex
