@@ -70,10 +70,12 @@ sync:
 	echo "Compile once using SyncTeX"
 
 ifeq ($(UNAME), Linux)
+	openout_any=a \
 	xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 endif
 
 ifeq ($(UNAME), Darwin)
+	openout_any=a \
 	time xelatex --interaction=nonstopmode --shell-escape --synctex=1 $(main_file).tex
 	@printf "\n\n"
 	-@tex_hide_aux.sh > /dev/null
